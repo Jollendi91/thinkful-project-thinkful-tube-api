@@ -13,9 +13,10 @@ function getDataFromApi(searchTerm, callback) {
 function renderResults(result) {
     return `
         <div>
-            <img src='${result.snippet.thumbnails.medium.url}'>
+            <a href="https://www.youtube.com/watch?v=${result.id.videoId}"><img src='${result.snippet.thumbnails.medium.url}'></a>
             <h3>${result.snippet.title}</h3>
             <p>${result.snippet.description}</p>
+            <a href="https://www.youtube.com/channel/${result.snippet.channelId}"><p>More from this channel</p></a>
         </div>
     `
 }
@@ -33,7 +34,7 @@ function watchSubmit() {
         const queryTarget = $(event.currentTarget).find('.js-search-input');
         const query = queryTarget.val();
         queryTarget.val("");
-        getDataFromApi(query, displayYoutubeSearchResults); 
+        getDataFromApi(query, displayYoutubeSearchResults);
     }
     )
 }
