@@ -37,24 +37,15 @@ function displayYoutubeSearchResults(data) {
     }
 }
 
-function getPrevResults() {
-    query.pageToken = $('.js-prev').val();
-    $.getJSON(YOUTUBE_SEARCH_URL, query, displayYoutubeSearchResults);
-}
-
-function getNextResults() {
-    query.pageToken = $('.js-next').val();
-    $.getJSON(YOUTUBE_SEARCH_URL, query, displayYoutubeSearchResults);
-}
-
 function listenForMoreResultsClick() {
     $('.js-search-results').on('click', '.js-button', event => {
         event.preventDefault();
         if ($(event.target).hasClass('js-prev')) {
-            getPrevResults();
+            query.pageToken = $('.js-prev').val();
         } else {
-            getNextResults();
+            query.pageToken = $('.js-next').val();
         }
+        $.getJSON(YOUTUBE_SEARCH_URL, query, displayYoutubeSearchResults);
     });
 }
 
