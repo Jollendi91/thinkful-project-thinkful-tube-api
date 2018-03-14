@@ -16,7 +16,7 @@ function renderResults(result) {
             <a href="https://www.youtube.com/watch?v=${result.id.videoId}"><img src='${result.snippet.thumbnails.medium.url}'></a>
             <h3>${result.snippet.title}</h3>
             <p>${result.snippet.description}</p>
-            <a href="https://www.youtube.com/channel/${result.snippet.channelId}"><p>More from this channel</p></a>
+            <a href="https://www.youtube.com/channel/${result.snippet.channelId}"><p>View more from ${result.snippet.channelTitle}</p></a>
         </div>
     `
 }
