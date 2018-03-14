@@ -1,6 +1,6 @@
 const YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
 
-function getDataFromApi(searchTerm, callback) {
+function getDataFromApi(searchTerm, callback, pageToken) {
     //get the jSON data from the api
     const query = {
         part: 'snippet',
@@ -33,6 +33,10 @@ function displayYoutubeSearchResults(data) {
     if (data.nextPageToken) {
         $('.js-search-results').append(`<button class="js-button js-next" role="button">Next</button>`);
     }
+}
+
+function getNextResults() {
+    
 }
 
 function listenForMoreResultsClick() {
