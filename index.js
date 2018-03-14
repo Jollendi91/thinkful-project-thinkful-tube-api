@@ -29,34 +29,33 @@ function displayYoutubeSearchResults(data) {
     $('.js-search-results').html(results);
 
     if (data.prevPageToken) {
-        $('.js-search-results').append(`<button class="js-button js-prev" role="button">Previous</button>`);
+        $('.js-search-results').append(`<button class="js-button js-prev" role="button" value="${data.prevPageToken}">Previous</button>`);
     }
 
     if (data.nextPageToken) {
-        $('.js-search-results').append(`<button class="js-button js-next" role="button">Next</button>`);
+        $('.js-search-results').append(`<button class="js-button js-next" role="button" value="${data.nextPageToken}">Next</button>`);
     }
 }
 
 function getPrevResults() {
-    query.pageToken = "CAUQAQ";
+    query.pageToken = $('.js-prev').val();
     $.getJSON(YOUTUBE_SEARCH_URL, query, displayYoutubeSearchResults);
 }
 
 function getNextResults() {
-    query.pageToken = "CAUQAA";
+    query.pageToken = $('.js-next').val();
     $.getJSON(YOUTUBE_SEARCH_URL, query, displayYoutubeSearchResults);
 }
 
 function listenForMoreResultsClick() {
-    $('.js-search-results').on('click', '.js-prev', event => {
+    $('.js-search-results').on('click', '.js-button', event => {
         event.preventDefault();
-         getPrevResults();
+        if ($(event.target).hasClass('js-prev')) {
+            getPrevResults();
+        } else {
+            getNextResults();
+        }
     });
-    
-    $('.js-search-results').on('click', '.js-next', event => {
-        event.preventDefault();
-        getNextResults();
-    })
 }
 
 function watchSubmit() {
