@@ -16,7 +16,7 @@ function renderResults(result) {
             <a href="https://www.youtube.com/watch?v=${result.id.videoId}"><img src='${result.snippet.thumbnails.medium.url}'></a>
             <h3>${result.snippet.title}</h3>
             <p>${result.snippet.description}</p>
-            <a href="https://www.youtube.com/channel/${result.snippet.channelId}"><p>More from this channel</p></a>
+            <a href="https://www.youtube.com/channel/${result.snippet.channelId}"><p>See more from ${result.snippet.channelTitle}</p></a>
         </div>
     `
 }
@@ -25,6 +25,27 @@ function displayYoutubeSearchResults(data) {
     //render the search thumbnails on the page
     const results = data.items.map((item, index) => renderResults(item));
     $('.js-search-results').html(results);
+
+    if (data.prevPageToken) {
+        $('.js-search-results').append(`<button class="js-button js-prev" role="button">Next</button>`);
+    }
+
+    if (data.nextPageToken) {
+        $('.js-search-results').append(`<button class="js-button js-next" role="button">Next</button>`);
+    }
+}
+
+function listenForMoreResultsClick() {
+    $('.js-search-results').on('click', '.js-button', event => {
+        event.preventDefault();
+
+        if ($(this).hasClass('.js-prev')) {
+            getPrevResults();
+        } else {
+            console.log("I was clicked");
+            getNextResults();
+        }
+    });
 }
 
 function watchSubmit() {
@@ -40,3 +61,5 @@ function watchSubmit() {
 }
 
 $(watchSubmit);
+
+$(listenForMoreResultsClick);
