@@ -1,8 +1,10 @@
 const YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
 
-function getDataFromApi(searchTerm, callback, pageToken) {
+let query;
+
+function getDataFromApi(searchTerm, callback) {
     //get the jSON data from the api
-    const query = {
+    query = {
         part: 'snippet',
         q: `${searchTerm}`,
         key: 'AIzaSyAI0ixIyxcDDXrPDjECt32oim-eMPQR4Uo'
@@ -27,7 +29,7 @@ function displayYoutubeSearchResults(data) {
     $('.js-search-results').html(results);
 
     if (data.prevPageToken) {
-        $('.js-search-results').append(`<button class="js-button js-prev" role="button">Next</button>`);
+        $('.js-search-results').append(`<button class="js-button js-prev" role="button">Previous</button>`);
     }
 
     if (data.nextPageToken) {
@@ -35,21 +37,26 @@ function displayYoutubeSearchResults(data) {
     }
 }
 
+function getPrevResults() {
+    query.pageToken = "CAUQAQ";
+    $.getJSON(YOUTUBE_SEARCH_URL, query, displayYoutubeSearchResults);
+}
+
 function getNextResults() {
-    
+    query.pageToken = "CAUQAA";
+    $.getJSON(YOUTUBE_SEARCH_URL, query, displayYoutubeSearchResults);
 }
 
 function listenForMoreResultsClick() {
-    $('.js-search-results').on('click', '.js-button', event => {
+    $('.js-search-results').on('click', '.js-prev', event => {
         event.preventDefault();
-
-        if ($(this).hasClass('.js-prev')) {
-            getPrevResults();
-        } else {
-            console.log("I was clicked");
-            getNextResults();
-        }
+         getPrevResults();
     });
+    
+    $('.js-search-results').on('click', '.js-next', event => {
+        event.preventDefault();
+        getNextResults();
+    })
 }
 
 function watchSubmit() {
@@ -57,9 +64,9 @@ function watchSubmit() {
     $('.js-input-form').submit(event => {
         event.preventDefault();
         const queryTarget = $(event.currentTarget).find('.js-search-input');
-        const query = queryTarget.val();
+        const searchInput = queryTarget.val();
         queryTarget.val("");
-        getDataFromApi(query, displayYoutubeSearchResults);
+        getDataFromApi(searchInput, displayYoutubeSearchResults);
     }
     )
 }
