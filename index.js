@@ -15,7 +15,7 @@ function getDataFromApi(searchTerm, callback) {
 function renderResults(result) {
     return `
         <div>
-            <a href="https://www.youtube.com/watch?v=${result.id.videoId}"><img src='${result.snippet.thumbnails.medium.url}'></a>
+            <a href="https://www.youtube.com/watch?v=${result.id.videoId}"><img src='${result.snippet.thumbnails.medium.url}' alt="${result.snippet.title}"></a>
             <h3>${result.snippet.title}</h3>
             <p>${result.snippet.description}</p>
             <a href="https://www.youtube.com/channel/${result.snippet.channelId}"><p>View more from ${result.snippet.channelTitle}</p></a>
@@ -61,6 +61,9 @@ function watchSubmit() {
     )
 }
 
-$(watchSubmit);
+function loadEventListeners() {
+    watchSubmit();
+    listenForMoreResultsClick();
+}
 
-$(listenForMoreResultsClick);
+$(loadEventListeners);
