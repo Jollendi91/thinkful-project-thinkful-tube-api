@@ -29,11 +29,11 @@ function displayYoutubeSearchResults(data) {
     $('.js-search-results').html(results);
 
     if (data.prevPageToken) {
-        $('.js-search-results').append(`<button class="js-button js-prev" role="button" value="${data.prevPageToken}">Previous</button>`);
+        $('.js-search-results').append(`<button class="prev js-button js-prev" role="button" value="${data.prevPageToken}">Previous</button>`);
     }
 
     if (data.nextPageToken) {
-        $('.js-search-results').append(`<button class="js-button js-next" role="button" value="${data.nextPageToken}">Next</button>`);
+        $('.js-search-results').append(`<button class="next js-button js-next" role="button" value="${data.nextPageToken}">Next</button>`);
     }
 }
 

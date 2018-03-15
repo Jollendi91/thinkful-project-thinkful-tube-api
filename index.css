@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: linear-gradient(135deg, rgba(207,231,250,1) 0%,rgba(120,143,248,1) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    width: 100%;
+}
+
+/* Header */
+
+header {
+    text-align: center;
+}
+
+.logo {
+    width: 100px;
+    margin-top: 20px;
+}
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+/* Main Content */
+
+main {
+    
+}
+
+/*Form */
+
+form {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+label {
+    flex-grow: 2;
+}
+
+.search-input {
+    width: 100%;
+}
+
+.search {
+    margin: 0 10px;
+}
+
+/* Search Results */
+
+.search-results.js-search-results {
+    background-color: white;
+    margin: 10px auto;
+    border-radius: 5px;
+}
