@@ -61,7 +61,7 @@ form {
     padding: 10px;
     margin: auto;
     border-radius: 5px;
-    box-shadow: 5px 5px 13px 1px #727272;
+    box-shadow: 5px 5px 10px -1px #727272;
 }
 
 label {
