@@ -1,6 +1,13 @@
+/* Global */
+
 * {
     box-sizing: border-box;
 }
+
+h1, h3 {
+    font-family: 'Raleway', sans-serif;
+}
+
 
 html {
     background: linear-gradient(135deg, rgba(207,231,250,1) 0%,rgba(120,143,248,1) 100%);
@@ -11,6 +18,10 @@ html {
 
 body {
     width: 100%;
+}
+
+button {
+    cursor: pointer;
 }
 
 /* Header */
@@ -25,7 +36,6 @@ header {
 }
 
 h1 {
-    font-family: 'Raleway', sans-serif;
     text-transform: uppercase;
     margin-top: 10px;
 }
@@ -41,6 +51,7 @@ main {
 form {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: white;
     padding: 10px;
     border-radius: 5px;
@@ -50,18 +61,96 @@ label {
     flex-grow: 2;
 }
 
+.search-input, .search {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
 .search-input {
     width: 100%;
 }
 
 .search {
+    font-size: 18px;
+    color: white;
+    background-color: #5DAA17;
+    border: 0;
+    border-radius: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
     margin: 0 10px;
+}
+
+.search:hover {
+    background-color: #3C6E0E;
 }
 
 /* Search Results */
 
-.search-results.js-search-results {
+.search-results {
     background-color: white;
     margin: 10px auto;
     border-radius: 5px;
+}
+
+.result {
+    padding: 20px 10px 10px;
+}
+
+.result-img {
+    display: block;
+    margin: auto;
+}
+
+.result-text {
+    padding: 0 10px;
+}
+
+.page-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+.prev, .next {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 0;
+    background-color: #2D52F7;
+    color: white;
+    font-size: 18px;
+    width: 87px;
+}
+
+.prev:hover, .next:hover {
+    background-color: #1A3095;
+}
+
+/* Media Queries */
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    main {
+        width: 90%;
+        margin: auto;
+    }
+
+    form {
+        width: 400px;
+        margin: auto;
+    }
+
+    .search-results {
+        max-width: 600px;
+    }
+
+    .result {
+        max-width: 500px;
+        margin: auto;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
 }
