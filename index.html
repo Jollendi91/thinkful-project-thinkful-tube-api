@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html lang='en'>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Thinkful Tube</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Raleway:900" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
 </head>
+
 <body>
+    <header role="banner">
+        <div>
+            <img src="https://i.vimeocdn.com/portrait/8990123_640x640" alt="Thinkful Logo" class="logo">
+        </div>
+        <h1><span class="main-title">Thinkful</span> Tube</h1>
+    </header>
     <main role="main">
-        <header role="banner">
-            <h1>Thinkful Tube</h1>
-            <form class="js-input-form">
-                <label>
-                    <input type="text" class="js-search-input">
-                </label>
-                <button type="submit" role="button" class="js-search">Search</button>
-            </form>
-        </header>
-        <section class="results">
-            <h2>Results</h2>
-            <div class="js-search-results">
-            </div>
+        <form class="input-form js-input-form">
+            <label>
+                <input type="text" class="search-input js-search-input" placeholder="What would you like to watch?" required>
+            </label>
+            <button type="submit" role="button" class="search js-search">Search</button>
+        </form>
+        <section class="search-results js-search-results">
         </section>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="index.js"></script>
 </body>
+
 </html>

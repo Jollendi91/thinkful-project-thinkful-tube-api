@@ -14,12 +14,14 @@ function getDataFromApi(searchTerm, callback) {
 
 function renderResults(result) {
     return `
-        <div>
-            <a href="https://www.youtube.com/watch?v=${result.id.videoId}"><img src='${result.snippet.thumbnails.medium.url}' alt="${result.snippet.title}"></a>
-            <h3>${result.snippet.title}</h3>
-            <p>${result.snippet.description}</p>
-            <a href="https://www.youtube.com/channel/${result.snippet.channelId}"><p>View more from ${result.snippet.channelTitle}</p></a>
-        </div>
+        <article class="result">
+            <a href="https://www.youtube.com/watch?v=${result.id.videoId}"><img class="result-img" src='${result.snippet.thumbnails.medium.url}' alt="${result.snippet.title}"></a>
+            <section class="result-text">
+                <h3>${result.snippet.title}</h3>
+                <p>${result.snippet.description}</p>
+                <a href="https://www.youtube.com/channel/${result.snippet.channelId}"><p>View more from ${result.snippet.channelTitle}</p></a>
+            </section>
+        </article>
     `
 }
 
@@ -27,13 +29,14 @@ function displayYoutubeSearchResults(data) {
     //render the search thumbnails on the page
     const results = data.items.map((item, index) => renderResults(item));
     $('.js-search-results').html(results);
+    $('.js-search-results').append(`<div class="page-buttons js-page-buttons"></div>`);
 
     if (data.prevPageToken) {
-        $('.js-search-results').append(`<button class="js-button js-prev" role="button" value="${data.prevPageToken}">Previous</button>`);
+        $('.js-page-buttons').append(`<button class="prev button js-button js-prev" role="button" value="${data.prevPageToken}">Previous</button>`);
     }
 
     if (data.nextPageToken) {
-        $('.js-search-results').append(`<button class="js-button js-next" role="button" value="${data.nextPageToken}">Next</button>`);
+        $('.js-page-buttons').append(`<button class="next button js-button js-next" role="button" value="${data.nextPageToken}">Next</button>`);
     }
 }
 
