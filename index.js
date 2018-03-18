@@ -13,11 +13,14 @@ function getDataFromApi(searchTerm, callback) {
 }
 
 function renderResults(result) {
+    let videoRefId = `${result.id.videoId}`;
+    let videoTitle = `${result.snippet.title}`;
+
     return `
         <article class="result">
-            <a href="https://www.youtube.com/watch?v=${result.id.videoId}"><img class="result-img" src='${result.snippet.thumbnails.medium.url}' alt="${result.snippet.title}"></a>
+            <a aria-labelledby="${videoRefId}" href="https://www.youtube.com/watch?v=${videoRefId}" ><img class="result-img" src='${result.snippet.thumbnails.medium.url}' alt="${videoTitle}"></a>
             <section class="result-text">
-                <h3>${result.snippet.title}</h3>
+                <h3 id=${videoRefId}>${videoTitle}</h3>
                 <p>${result.snippet.description}</p>
                 <a href="https://www.youtube.com/channel/${result.snippet.channelId}"><p>View more from ${result.snippet.channelTitle}</p></a>
             </section>
