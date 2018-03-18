@@ -18,9 +18,9 @@ function renderResults(result) {
 
     return `
         <article class="result">
-            <a aria-labelledby="${videoRefId}" href="https://www.youtube.com/watch?v=${videoRefId}" ><img class="result-img" src='${result.snippet.thumbnails.medium.url}' alt="${videoTitle}"></a>
+            <a aria-labelledby="${videoRefId}" href="https://www.youtube.com/watch?v=${videoRefId}" target="_blank"><img class="result-img" src='${result.snippet.thumbnails.medium.url}' alt="${videoTitle}"></a>
             <section class="result-text">
-                <h3 id=${videoRefId}>${videoTitle}</h3>
+                <h3 id=${videoRefId} aria-hidden="true">${videoTitle}</h3>
                 <p>${result.snippet.description}</p>
                 <a href="https://www.youtube.com/channel/${result.snippet.channelId}"><p>View more from ${result.snippet.channelTitle}</p></a>
             </section>
@@ -34,7 +34,7 @@ function displayYoutubeSearchResults(data) {
     const resultsPerPage = data.pageInfo.resultsPerPage;
     const results = data.items.map((item, index) => renderResults(item));
     $('.js-search-results').html(results);
-    $('.js-search-results').prepend(`<p>You are viewing ${resultsPerPage} out of ${totalResults} results`);
+    $('.js-search-results').prepend(`<div class="page-results">You are viewing ${resultsPerPage} results.</div>`);
     $('.js-search-results').append(`<div class="page-buttons js-page-buttons"></div>`);
 
     if (data.prevPageToken) {

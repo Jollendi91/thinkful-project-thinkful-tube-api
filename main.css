@@ -102,6 +102,13 @@ label {
     box-shadow: 0px 0px 24px -10px #000;
 }
 
+.page-results {
+    font-size: 18px;
+    padding-top: 15px;
+    padding-left: 15px;
+    margin-left: 20px;
+}
+
 .result {
     padding: 20px 10px 10px;
     max-width: 500px;
