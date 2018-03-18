@@ -13,11 +13,14 @@ function getDataFromApi(searchTerm, callback) {
 }
 
 function renderResults(result) {
+    const videoRefId = `${result.id.videoId}`;
+    const videoTitle = `${result.snippet.title}`;
+
     return `
         <article class="result">
-            <a href="https://www.youtube.com/watch?v=${result.id.videoId}"><img class="result-img" src='${result.snippet.thumbnails.medium.url}' alt="${result.snippet.title}"></a>
+            <a aria-labelledby="${videoRefId}" href="https://www.youtube.com/watch?v=${videoRefId}" target="_blank"><img class="result-img" src='${result.snippet.thumbnails.medium.url}' alt="${videoTitle}"></a>
             <section class="result-text">
-                <h3>${result.snippet.title}</h3>
+                <h3 id=${videoRefId} aria-hidden="true">${videoTitle}</h3>
                 <p>${result.snippet.description}</p>
                 <a href="https://www.youtube.com/channel/${result.snippet.channelId}"><p>View more from ${result.snippet.channelTitle}</p></a>
             </section>
@@ -27,8 +30,11 @@ function renderResults(result) {
 
 function displayYoutubeSearchResults(data) {
     //render the search thumbnails on the page
+    const totalResults = data.pageInfo.totalResults;
+    const resultsPerPage = data.pageInfo.resultsPerPage;
     const results = data.items.map((item, index) => renderResults(item));
     $('.js-search-results').html(results);
+    $('.js-search-results').prepend(`<div class="page-results">You are viewing ${resultsPerPage} results.</div>`);
     $('.js-search-results').append(`<div class="page-buttons js-page-buttons"></div>`);
 
     if (data.prevPageToken) {

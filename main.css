@@ -80,7 +80,7 @@ label {
 .search {
     font-size: 18px;
     color: white;
-    background-color: #5DAA17;
+    background-color: #488414;
     border: 0;
     border-radius: 5px;
     padding-left: 12px;
@@ -100,6 +100,13 @@ label {
     border-radius: 5px;
     max-width: 600px;
     box-shadow: 0px 0px 24px -10px #000;
+}
+
+.page-results {
+    font-size: 18px;
+    padding-top: 15px;
+    padding-left: 15px;
+    margin-left: 20px;
 }
 
 .result {
