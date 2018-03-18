@@ -13,8 +13,8 @@ function getDataFromApi(searchTerm, callback) {
 }
 
 function renderResults(result) {
-    let videoRefId = `${result.id.videoId}`;
-    let videoTitle = `${result.snippet.title}`;
+    const videoRefId = `${result.id.videoId}`;
+    const videoTitle = `${result.snippet.title}`;
 
     return `
         <article class="result">
@@ -30,8 +30,11 @@ function renderResults(result) {
 
 function displayYoutubeSearchResults(data) {
     //render the search thumbnails on the page
+    const totalResults = data.pageInfo.totalResults;
+    const resultsPerPage = data.pageInfo.resultsPerPage;
     const results = data.items.map((item, index) => renderResults(item));
     $('.js-search-results').html(results);
+    $('.js-search-results').prepend(`<p>You are viewing ${resultsPerPage} out of ${totalResults} results`);
     $('.js-search-results').append(`<div class="page-buttons js-page-buttons"></div>`);
 
     if (data.prevPageToken) {
